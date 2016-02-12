@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class HerokuConnectApplication {
 
+    @RequestMapping("/")
+    public String home(Model model) {
+        return "home";
+    }
 
 	@RequestMapping("/contacts")
     public String contacts(Model model) {

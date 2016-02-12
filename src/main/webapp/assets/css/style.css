@@ -37,3 +37,8 @@ div.container {
     padding: 10px;
     margin: 20px;
 }
+
+p.style1 {
+    font-size: 16px;
+    padding: 10px;
+}

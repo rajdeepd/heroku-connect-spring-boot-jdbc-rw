@@ -9,18 +9,9 @@
 <body>
 <!--<div style="margin-top: 20px;margin-left: 50px">-->
 <div class="container">
-<h3> Salesforce Contacts : </h3>
-<table>
-<th><td>Id</td><td>SFID</td><td>First</td><td>Last</td><td>Email</td></th>
-<tr th:each="contact : ${contacts}">
-    <td></td>
-    <td th:text="${contact.id}" ></td>
-    <td th:text="${contact.sfid}" ></td>
-    <td th:text="${contact.first}" ></td>
-    <td th:text="${contact.last}" ></td>
-    <td th:text="${contact.email}" ></td>
-</tr>
-</table>
+<h2> Heroku Connect Spring Boot Demo : </h2>
+
+<p class="style1"> Get Salesforce Contacts : <a href="/contacts">Link</a></p>
 </div>
 </body>
 </html>
