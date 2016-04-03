@@ -9,7 +9,9 @@ import java.util.*;
 import java.net.URISyntaxException;
 import java.net.URI;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
@@ -19,6 +21,12 @@ public class HerokuConnectApplication {
     @RequestMapping("/")
     public String home(Model model) {
         return "home";
+    }
+
+    @RequestMapping("/createcontactform")
+    public String createUserForm(Model model) {
+        model.addAttribute("contact", new Contact());
+        return "createcontact";
     }
 
 	@RequestMapping("/contacts")
@@ -46,6 +54,29 @@ public class HerokuConnectApplication {
         } catch (Exception e) {
             return e.toString();
         }
+    }
+
+    @RequestMapping(value="/createuser", method= RequestMethod.POST)
+    public String createUser(@ModelAttribute Contact contact, Model model) {
+        model.addAttribute("user", contact);
+        int id = contact.getId();
+        String first = contact.getFirst();
+        String last = contact.getLast();
+        String email = contact.getEmail();
+        //String city = contact.getCity();
+        //String company = contact.getCompany();
+        try {
+            Connection connection = getConnection();
+            Statement stmt = connection.createStatement();
+            String sql;
+            //SELECT id, sfid,  firstname, lastname, name, email FROM salesforce.contact
+            sql = "insert into salesforce.contact(firstname, lastname, name, company, city) values " +
+                    "('" + first  + "', '" + last + " ',' " + email +  "');";
+            ResultSet rs = stmt.executeQuery(sql);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "result";
     }
 
     private static Connection getConnection() throws URISyntaxException, SQLException {

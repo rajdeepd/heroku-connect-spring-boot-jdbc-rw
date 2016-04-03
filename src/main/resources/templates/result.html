@@ -1,0 +1,16 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="contact">
+<h1>Result</h1>
+<p th:text="'first: '  + ${user.first}" />
+<p th:text="'last: ' + ${user.last}" />
+<a href="/createcontactform">Create Another User</a>
+</div>
+</body>
+</html>

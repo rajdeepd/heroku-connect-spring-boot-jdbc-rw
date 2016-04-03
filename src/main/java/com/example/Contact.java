@@ -9,6 +9,7 @@ public class Contact {
     private String first;
     private String last;
     private String email;
+    public Contact() {}
     public Contact(int id, String sfid, String first, String last, String email ) {
         super();
         this.id = id;

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Heroku Connect Spring Boot Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" th:href="@{/assets/css/bootstrap.css}" />
+    <link rel="stylesheet" href="../assets/css/thymeleaf-demo.css" th:href="@{/assets/css/style.css}" />
+</head>
+<body>
+<!--<div style="margin-top: 20px;margin-left: 50px">-->
+<div class="container">
+<h3> Users : </h3>
+    <form action="#" th:action="@{/createcontact}" th:object="${contact}" method="post">>
+        <table border="0">
+            <tr>
+                <td colspan="2" align="center"><h2>Spring MVC Form Demo - Registration</h2></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input id="first" type="text" th:field="*{first}"/></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input id="last" type="text" th:field="*{last}"/></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input id="email" type="text" th:field="*{email}"/></td>
+            </tr>
+            <tr><td><input type="submit" name="Submit"/></td></tr>
+
+        </table>
+    </form>
+</div>
+</body>
+</html>
