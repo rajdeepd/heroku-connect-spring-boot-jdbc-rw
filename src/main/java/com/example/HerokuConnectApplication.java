@@ -24,7 +24,7 @@ public class HerokuConnectApplication {
     }
 
     @RequestMapping("/createcontactform")
-    public String createUserForm(Model model) {
+    public String createContactForm(Model model) {
         model.addAttribute("contact", new Contact());
         return "createcontact";
     }
@@ -56,9 +56,9 @@ public class HerokuConnectApplication {
         }
     }
 
-    @RequestMapping(value="/createuser", method= RequestMethod.POST)
-    public String createUser(@ModelAttribute Contact contact, Model model) {
-        model.addAttribute("user", contact);
+    @RequestMapping(value="/createcontact", method= RequestMethod.POST)
+    public String createContact(@ModelAttribute Contact contact, Model model) {
+        model.addAttribute("contact", contact);
         int id = contact.getId();
         String first = contact.getFirst();
         String last = contact.getLast();
@@ -70,17 +70,28 @@ public class HerokuConnectApplication {
             Statement stmt = connection.createStatement();
             String sql;
             //SELECT id, sfid,  firstname, lastname, name, email FROM salesforce.contact
-            sql = "insert into salesforce.contact(firstname, lastname, name, company, city) values " +
+            sql = "insert into salesforce.contact(firstname, lastname, email) values " +
                     "('" + first  + "', '" + last + " ',' " + email +  "');";
-            ResultSet rs = stmt.executeQuery(sql);
+            System.out.println(sql);
+            int result = stmt.executeUpdate(sql);
+            System.out.println("execute update returned: " + result);
         }catch(Exception e){
             e.printStackTrace();
+            model.addAttribute("Exception", e.toString());
         }
         return "result";
     }
 
     private static Connection getConnection() throws URISyntaxException, SQLException {
-		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+        URI dbUri = null;
+        String DEFAULT_DATABASE_URL = "postgres://u:p" +
+                "@ec2-xx.compute-1.amazonaws.com:5432/db";
+        try {
+            dbUri = new URI(System.getenv("DATABASE_URL"));
+        }catch (Exception e){
+            e.printStackTrace();
+            dbUri = new URI(DEFAULT_DATABASE_URL);
+        }
 
 		String username = dbUri.getUserInfo().split(":")[0];
 		String password = dbUri.getUserInfo().split(":")[1];

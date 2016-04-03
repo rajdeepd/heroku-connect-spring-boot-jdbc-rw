@@ -8,6 +8,27 @@ public class Contact {
     private String sfid;
     private String first;
     private String last;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSfid(String sfid) {
+        this.sfid = sfid;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
     private String email;
     public Contact() {}
     public Contact(int id, String sfid, String first, String last, String email ) {

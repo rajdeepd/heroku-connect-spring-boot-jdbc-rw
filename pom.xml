@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>heroku-connect-spring-boot</artifactId>
+	<artifactId>heroku-connect-spring-boot-jdbc-rw</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -53,6 +53,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-
 </project>
